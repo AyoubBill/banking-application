@@ -1,0 +1,70 @@
+<div class="container mt-5">
+    <h2>Bank customer</h2>
+    <div class="form-check form-switch float-end">
+        <label class="form-check-label" for="flexSwitchCheckDefault">show inactive users only</label>
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+            [(ngModel)]="displayInactiveUsers" (change)="filterCustomer()">
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">IBAN</th>
+                <th scope="col">State</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(customer of customers; track customer) {
+            <tr>
+                <td>{{customer.firstname}}</td>
+                <td>{{customer.lastname}}</td>
+                <td>{{customer.iban}}</td>
+                <td><span class="badge " [class.text-bg-success]="customer.active"
+                        [class.text-bg-warning]="!customer.active">
+                        {{customer.active ? 'Active' : 'Inactive'}}</span></td>
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" value="" 
+                            id="flexCheckDefault"
+                            [checked]="customer.active"
+                            [(ngModel)]="customer.active"
+                            (change)="changeUserState(customer.active, customer.id)"
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                        <!-- <em class="fas fa-trash text-danger" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"></em> -->
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirm!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Would you really want to {{ updateState ? 'enable' : 'disable'}} this user?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" 
+                    (click)="cancelUpdate()" data-bs-dismiss="modal">
+                    <em class="fa fa-times"></em> Cancel
+                </button>
+                <button type="button" class="btn btn-danger" (click)="updateUserState()" data-bs-dismiss="modal">
+                    <em class="fa fa-trash"></em> Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

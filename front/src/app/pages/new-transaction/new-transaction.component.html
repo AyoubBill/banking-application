@@ -1,0 +1,55 @@
+<!-- <div class="container-fluid mt-5"> -->
+<div class="mb-3">
+    <div class="card-body">
+        <h2 class="mb-4">New Transaction</h2>
+        @if(errorMessages.length) {
+        <div class="alert alert-danger" role="alert">
+            @for(message of errorMessages; track message) {
+            <p>{{ message }}</p>
+            }
+        </div>
+        }
+        <h4 class="card-title mb-4">Your account balance: {{accountBalance}}$</h4>
+        <div class="mb-4">
+            <select class="form-select" aria-label="Default select example" [(ngModel)]="transactionDto.type">
+                <option selected disabled>Transaction Type</option>
+                <option [ngValue]="'TRANSFERT'">TRANSFERT</option>
+                <option [ngValue]="'DEPOSIT'">DEPOSIT</option>
+            </select>
+        </div>
+
+        @if(transactionDto.type === "TRANSFERT") {
+        <div class="mb-4">
+            <select class="form-select" aria-label="Default select example"
+                [(ngModel)]="transactionDto.destinationIban">
+                <option [ngValue]="" selected disabled>Choose a contact</option>
+                @for(contact of contacts; track contact) {
+                <option [ngValue]="contact.iban">
+                    {{contact.firstname + " " + contact.lastname}}</option>
+                }
+            </select>
+        </div>
+        }
+        @if(transactionDto.type) {
+        <div class="mb-4">
+            <input type="text" class="form-control" name="amount" placeholder="Amount"
+                [(ngModel)]="transactionDto.amount">
+        </div>
+        }
+
+        @if(transactionDto.type === "TRANSFERT") {
+        <div class="mb-4">
+            <input type="text" class="form-control" name="iban" placeholder="AB12 1234 1234 1234 11"
+                [(ngModel)]="transactionDto.destinationIban">
+        </div>
+        }
+
+        <div class="mb-4 float-end">
+            <a class="btn btn-link" (click)="onCancel()">Cancel</a>
+            <a class="btn btn-primary ms-3" (click)="onSave()">
+                <em class="fas fa-save me-2"></em>Save
+            </a>
+        </div>
+    </div>
+</div>
+<!-- </div> -->

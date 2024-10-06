@@ -1,0 +1,60 @@
+<div class="container mt-5">
+    <h2>My Contacts List</h2>
+    <a class="btn btn-success float-end" [routerLink]="'/user/new-contact'">
+        + New Contact
+    </a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Email</th>
+                <th scope="col">IBAN</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(contact of contacts; track contact) {
+            <tr>
+                <th scope="row">{{contact.firstname}}</th>
+                <td>{{contact.lastname}}</td>
+                <td>{{contact.email}}</td>
+                <td>{{contact.iban}}</td>
+                <td>
+                    <em class="fas fa-edit text-primary" (click)="onEdit(contact.id)"></em>
+                    <em class="mx-3">||</em>
+                    <em class="fas fa-trash text-danger" 
+                        data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                        (click)="contactIdToDelete = contact.id"></em>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Confirm!</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Would you like to delete this contact ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link" data-bs-dismiss="modal">
+                    <em class="fa fa-times" (click)="contactIdToDelete = -1"></em> Cancel
+                </button>
+                <button type="button" class="btn btn-danger" 
+                    (click)="onDelete()" data-bs-dismiss="modal">
+                    <em class="fa fa-trash"></em> Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

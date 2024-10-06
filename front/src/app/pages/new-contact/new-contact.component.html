@@ -1,0 +1,40 @@
+<div class="container-fluid mt-5">
+    <div class="card w-75 mb-3">
+        <div class="card-body">
+            <h2 class="card-title mb-4">New contact</h2>
+            @if(errorMessages.length) {
+                <div class="alert alert-danger" role="alert">
+                    @for(message of errorMessages; track message) {
+                        <p>{{ message }}</p>
+                    }
+                </div>
+            }
+            <div class="mb-4">
+                <input type="text" class="form-control" 
+                    name="firstname" placeholder="First name" [(ngModel)]="contactDto.firstname"> 
+            </div>
+
+            <div class="mb-4">
+                <input type="text" class="form-control" 
+                    name="lastname" placeholder="Last name" [(ngModel)]="contactDto.lastname"> 
+            </div>
+
+            <div class="mb-4">
+                <input type="email" class="form-control" 
+                    name="email" placeholder="Email" [(ngModel)]="contactDto.email"> 
+            </div>
+
+            <div class="mb-4">
+                <input type="text" class="form-control" 
+                    name="iban" placeholder="AB12 1234 1234 1234 12" [(ngModel)]="contactDto.iban">
+            </div>
+
+            <div class="mb-4 float-end">
+                <a class="link-opacity-100" [routerLink]="['/user/my-contact-list']">Cancel</a>
+                <a class="btn btn-primary ms-3 link-opacity-100" (click)="onSave()">
+                    <em class="fas fa-save me-2"></em>Save
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <h2 class="my-4">My Transactions</h2>
+    <button type="button" class="btn btn-success float-end">
+        + New Transaction
+    </button>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Amount</th>
+                <th scope="col">IBAN</th>
+                <th scope="col">Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(transaction of transactions; track transaction) {
+                <tr>
+                    <th scope="row">{{ transaction.transactionDate }}</th>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.destinationIban }}</td>
+                    @if(transaction.type === 'DEPOSIT') {
+                        <td>
+                            <span class="badge bg-success">{{transaction.type}}</span>
+                        </td>
+                    } @else {
+                        <td>
+                            <span class="badge bg-warning">{{transaction.type}}</span>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

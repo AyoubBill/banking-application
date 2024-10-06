@@ -1,0 +1,32 @@
+<div class="container_login">
+    <form>
+        <h3 class="mt-4 mb-4">Login</h3>
+        @if(errorMessages.length) {
+            <div class="alert alert-danger" role="alert">
+                @for(message of errorMessages; track message) {
+                    <p>{{ message }}</p>
+                }
+            </div>
+        }
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" 
+                name="email" [(ngModel)]="authenticationRequest.email">
+            <div id="email" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" 
+                name="password" [(ngModel)]="authenticationRequest.password">
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <button type="submit" class="btn btn-primary"
+                (click)="onLogin()">Sign in</button>
+            <div>
+                <a class="link-opacity-100" [routerLink]="['/register']">
+                    Create an account
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
