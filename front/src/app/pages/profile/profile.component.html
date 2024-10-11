@@ -1,51 +1,49 @@
-<!-- <div class="container-fluid mt-5"> -->
-    <div class="mb-3">
-        <div class="card-body">
-            <h2 class="card-title mb-4">My profile</h2>
-            <div class="row d-flex mb-4">
-                <div class="card col-5 me-4">
-                    <div class="card-body">
-                        <h3 class="card-title">Personal info</h3>
-                        <div class="mb-2">
-                            <input type="text" class="form-control" 
-                                id="firstname" placeholder="First name">
-                        </div>
-                        <div class="mb-2">
-                            <input type="text" class="form-control" 
-                                id="lastname" placeholder="Last name">
-                        </div>
-                        <div class="mb-2">
-                            <input type="email" class="form-control" 
-                                id="email" placeholder="Email address">
-                        </div>
+<div class="mb-3">
+    <div class="card-body">
+        <h2 class="card-title mb-4">My profile</h2>
+        <div class="row d-flex mb-4">
+            <div class="card col-5 me-4">
+                <div class="card-body">
+                    <h3 class="card-title">Personal info</h3>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="firstname" placeholder="First name"
+                            [(ngModel)]="userDto.firstname">
                     </div>
-                </div>
-
-                <div class="card col-5">
-                    <div class="card-body">
-                        <h3 class="card-title">Address</h3>
-                        <div class="mb-2">
-                            <input type="text" class="form-control" 
-                                id="firstname" placeholder="Street">
-                        </div>
-                        <div class="mb-2">
-                            <input type="text" class="form-control" 
-                                id="lastname" placeholder="Last name">
-                        </div>
-                        <div class="mb-2">
-                            <input type="email" class="form-control" 
-                                id="email" placeholder="Email address">
-                        </div>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="lastname" placeholder="Last name"
+                            [(ngModel)]="userDto.lastname">
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" class="form-control" id="email" placeholder="Email address"
+                            [(ngModel)]="userDto.email">
                     </div>
                 </div>
             </div>
 
-            <div class="mb-4 float-end">
-                <a href="#">Cancel</a>
-                <a href="#" class="btn btn-primary ms-3">
-                    <em class="fas fa-save me-2"></em>Save
-                </a>
+            <div class="card col-5">
+                <div class="card-body">
+                    <h3 class="card-title">Address</h3>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="firstname" placeholder="City"
+                            [(ngModel)]="userDto.city">
+                    </div>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" id="lastname" placeholder="Street"
+                            [(ngModel)]="userDto.street">
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" class="form-control" id="email" placeholder="Zip Code"
+                            [(ngModel)]="userDto.zipCode">
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="mb-4 float-end">
+            <a class="btn" (click)="onCancel()">Cancel</a>
+            <a class="btn btn-primary ms-3" (click)="onSave()">
+                <em class="fas fa-save me-2"></em>Save
+            </a>
+        </div>
     </div>
-<!-- </div> -->
+</div>

@@ -108,17 +108,17 @@ export class UserDashboardComponent implements OnInit {
     this.accountInfoList = [
       {
         title: 'Account Balance',
-        amount: this.accountBalance,
+        amount: this.accountBalance? this.accountBalance : 0,
         infoStyle: 'bg-success'
       },
       {
         title: 'Highest Deposit',
-        amount: this.highestDeposit,
+        amount: this.highestDeposit? this.highestDeposit : 0,
         infoStyle: 'bg-warning'
       },
       {
         title: 'Highest Transfert',
-        amount: this.highestTransfert,
+        amount: this.highestTransfert? this.highestTransfert : 0,
         infoStyle: 'bg-danger'
       }
     ];

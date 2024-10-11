@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../services/services';
 import { TransactionDto } from '../../services/models';
 import { HelperService } from '../../services/helper/helper.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-my-transactions',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './my-transactions.component.html',
   styleUrls: ['./my-transactions.component.scss']
 })
