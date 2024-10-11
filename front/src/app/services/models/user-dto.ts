@@ -8,4 +8,7 @@ export interface UserDto {
   lastname: string;
   password: string;
   iban?: string;
+  city?: string;
+  street?: string;
+  zipCode?: number;
 }

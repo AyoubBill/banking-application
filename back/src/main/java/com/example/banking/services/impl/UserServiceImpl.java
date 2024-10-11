@@ -98,11 +98,6 @@ public class UserServiceImpl implements UserService {
         User user = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("No user was found"));
 
-        //delete account
-//        Account account = accountRepository.findByUserId(user.getId())
-//                .orElseThrow(() -> new EntityNotFoundException("No account was found"));
-//        accountService.delete(account.getId());
-
         user.setActive(false);
         repository.save(user);
         return user.getId();
@@ -115,6 +110,9 @@ public class UserServiceImpl implements UserService {
         User user = UserDto.toEntity(userDto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(findOrCreateRole(ROLE_USER));
+        if (ROLE_USER.equals("ROLE_ADMIN")) {
+            user.setActive(true);
+        }
         var savedUser = repository.save(user);
         Map<String, Object> claims = new HashMap<>();
         claims.put("userId", savedUser.getId());
@@ -138,9 +136,6 @@ public class UserServiceImpl implements UserService {
 
     private Role findOrCreateRole(String roleName) {
         Role role = roleRepository.findByName(roleName).orElse(null);
-        if (role == null) {
-            return roleRepository.save(Role.builder().name(roleName).build());
-        }
         return role;
     }
 }

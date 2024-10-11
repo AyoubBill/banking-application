@@ -34,11 +34,14 @@ public class UserDto {
     @NotNull(message = "Le password ne doit pas etre null")
     @NotBlank(message = "Le password ne doit pas etre vide")
     @NotEmpty(message = "Le password ne doit pas etre vide")
-    @Size(min = 8, max = 16)
+    //@Size(min = 8, max = 16)
     private String password;
 
     private String iban;
     private boolean active;
+    private String city;
+    private String street;
+    private int zipCode;
 
     public static UserDto fromEntity(User user) {
         return UserDto.builder()
@@ -49,6 +52,9 @@ public class UserDto {
                 .password(user.getPassword())
                 .iban(user.getAccount() == null ? "" : user.getAccount().getIban())
                 .active(user.isActive())
+                .city(user.getCity())
+                .street(user.getStreet())
+                .zipCode(user.getZipCode())
                 .build();
     }
 
@@ -60,6 +66,9 @@ public class UserDto {
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
                 .active(userDto.isActive())
+                .city(userDto.getCity())
+                .street(userDto.getStreet())
+                .zipCode(userDto.getZipCode())
                 .build();
     }
 }

@@ -17,6 +17,11 @@
                     <em class="fas fa-user"></em> Ayoub Bil
                 </a>
             </div>
+            <div class="d-flex align-items-center">
+                <a class="nav-link ms-4" [routerLink]="'/login'">
+                    <em class="fa-solid fa-right-from-bracket"></em> Logout
+                </a>
+            </div>
         </div>
     </nav>
 } @else {
@@ -40,6 +45,9 @@
                 </a>
                 <a class="nav-link ms-4" [routerLink]="'/user/profile'">
                     <em class="fas fa-user"></em> Ayoub Bil
+                </a>
+                <a class="nav-link ms-4" [routerLink]="'/login'">
+                    <em class="fa-solid fa-right-from-bracket"></em> Logout
                 </a>
             </div>
         </div>

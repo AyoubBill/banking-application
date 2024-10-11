@@ -36,7 +36,6 @@ export class LoginComponent {
         } else {
           this.router.navigate(['user/dashboard']);
         }
-        console.log(decodedToken);
       },
       error: (error) => {
         this.errorMessages.push(error.error.errorMessage);

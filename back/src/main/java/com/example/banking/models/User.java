@@ -29,6 +29,12 @@ public class User extends AbstractEntity implements UserDetails {
 
     private boolean active;
 
+    private String city;
+
+    private String street;
+
+    private int zipCode;
+
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
 
@@ -36,17 +42,22 @@ public class User extends AbstractEntity implements UserDetails {
     private List<Contact> contacts;
 
     @OneToOne
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @OneToOne
+    @JoinColumn(name = "address_id")
     private Address address;
 
-//    @ManyToOne
     @OneToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (role == null) {
+            return Collections.emptyList();
+        }
         return Collections.singletonList(new SimpleGrantedAuthority(role.getName()));
     }
 
