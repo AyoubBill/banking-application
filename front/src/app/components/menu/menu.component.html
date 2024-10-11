@@ -14,11 +14,11 @@
             </div>
             <div class="d-flex align-items-center">
                 <a class="nav-link ms-4" [routerLink]="'/admin/profile'">
-                    <em class="fas fa-user"></em> Ayoub Bil
+                    <em class="fas fa-user"></em> {{fullName}}
                 </a>
             </div>
             <div class="d-flex align-items-center">
-                <a class="nav-link ms-4" [routerLink]="'/login'">
+                <a class="btn nav-link ms-4" (click)="Logout()">
                     <em class="fa-solid fa-right-from-bracket"></em> Logout
                 </a>
             </div>
@@ -44,9 +44,9 @@
                     + New Transaction
                 </a>
                 <a class="nav-link ms-4" [routerLink]="'/user/profile'">
-                    <em class="fas fa-user"></em> Ayoub Bil
+                    <em class="fas fa-user"></em> {{fullName}}
                 </a>
-                <a class="nav-link ms-4" [routerLink]="'/login'">
+                <a class="btn nav-link ms-4" (click)="Logout()">
                     <em class="fa-solid fa-right-from-bracket"></em> Logout
                 </a>
             </div>

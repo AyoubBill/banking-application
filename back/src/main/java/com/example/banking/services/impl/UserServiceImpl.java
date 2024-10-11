@@ -44,7 +44,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer save(UserDto dto) {
         validators.validate(dto);
-        User user = UserDto.toEntity(dto);
+        User user = repository.findById(dto.getId()).orElse(null);
+        if (user != null) {
+            user.setFirstname(dto.getFirstname());
+            user.setLastname(dto.getLastname());
+            user.setEmail(dto.getEmail());
+            user.setCity(dto.getCity());
+            user.setStreet(dto.getStreet());
+            user.setZipCode(dto.getZipCode());
+            return repository.save(user).getId();
+        }
+        user = UserDto.toEntity(dto);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user).getId();
     }
